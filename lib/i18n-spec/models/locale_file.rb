@@ -42,6 +42,10 @@ module I18nSpec
       end
     end
 
+    def strings
+      flattened_translations.select { |k, v| v.is_a?(String) }.values
+    end
+
     def invalid_pluralization_keys
       invalid = []
       pluralizations.each do |parent, pluralization|
@@ -89,6 +93,18 @@ module I18nSpec
 
     def is_named_like_top_level_namespace?
       locale_code == File.basename(@filepath, File.extname(@filepath))
+    end
+
+    def valid_html?
+      strings.all? do |v|
+        begin
+          REXML::Document.new(v)
+          true
+        rescue REXML::ParseException => e
+          @errors[:html] = e.to_s
+          false
+        end
+      end
     end
 
   protected

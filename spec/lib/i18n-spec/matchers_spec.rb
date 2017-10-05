@@ -13,6 +13,7 @@ describe "Invalid files" do
   it { expect('spec/fixtures/invalid_locale.yml').not_to have_a_valid_locale }
   it { expect('spec/fixtures/not_subset.yml').not_to be_a_subset_of 'spec/fixtures/en.yml' }
   it { expect('spec/fixtures/missing_pluralization_keys.yml').to have_missing_pluralization_keys }
+  it { expect('spec/fixtures/invalid_html.yml').not_to have_valid_html }
 end
 
 describe "Translated files" do

@@ -7,5 +7,6 @@ RSpec.shared_examples_for "a valid locale file" do |locale_file|
     it { is_expected.to be_named_like_top_level_namespace }
     it { is_expected.to_not have_legacy_interpolations }
     it { is_expected.to have_a_valid_locale }
+    it { is_expected.to have_valid_html }
   end
 end
