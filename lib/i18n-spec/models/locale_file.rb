@@ -98,7 +98,7 @@ module I18nSpec
     def valid_html?
       html_strings.all? do |v|
         begin
-          REXML::Document.new(v)
+          REXML::Document.new("<body>#{v}</body>")
           true
         rescue REXML::ParseException => e
           @errors[:html] = e.to_s
