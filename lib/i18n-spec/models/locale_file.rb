@@ -42,8 +42,8 @@ module I18nSpec
       end
     end
 
-    def strings
-      flattened_translations.select { |k, v| v.is_a?(String) }.values
+    def html_strings
+      flattened_translations.select { |k, v| v.is_a?(String) && k.to_s.ends_with?("_html") }.values
     end
 
     def invalid_pluralization_keys
@@ -96,7 +96,7 @@ module I18nSpec
     end
 
     def valid_html?
-      strings.all? do |v|
+      html_strings.all? do |v|
         begin
           REXML::Document.new(v)
           true
